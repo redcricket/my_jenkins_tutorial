@@ -13,7 +13,7 @@ pipeline {
 
 pipeline {
     agent {
-        docker { image 'node:16.13.1-alpine' }
+        docker { image 'hashicorp/terraform:latest' }
     }
     stages {
         stage('Hello') {
@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'node --version'
+                sh 'terraform --version'
             }
         }
     }
