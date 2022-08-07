@@ -13,9 +13,11 @@ pipeline {
         }
         stage('Test') {
             steps {
+                sh 'ls -al'
                 sh 'terraform --version'
                 sh 'terraform init'
                 sh 'terraform plan'
+                sh 'ls -al'
             }
         }
     }
