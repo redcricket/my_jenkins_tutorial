@@ -16,7 +16,6 @@ pipeline {
                 sh 'ls -al'
                 sh 'terraform --version'
                 sh 'terraform init'
-                sh 'service docker start'
                 sh 'terraform providers'
                 sh 'terraform plan'
                 sh 'ls -al'
