@@ -33,10 +33,10 @@ terraform providers
 echo "apply or destroy is [$apply_or_destroy]"
 if [ $apply_or_destroy == 'destroy' ]
 then
-    terraform destroy -auto-approve
+    terraform destroy -auto-approve -no-color
 else
-    terraform plan -out the-plan-man
-    terraform apply -auto-approve the-plan-man
+    terraform plan -no-color -out the-plan-man
+    terraform apply -no-color -auto-approve the-plan-man
 fi
 ls -al
 '''
