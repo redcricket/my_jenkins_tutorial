@@ -1,7 +1,5 @@
 pipeline {
-    parameters {
-        choice(name: 'apply_or_destroy', choices: '['apply', 'destroy'], description: 'Run terraform apply or destroy.')
-    }
+    // parameters { choice(name: 'apply_or_destroy', choices: '['apply', 'destroy'], description: 'Run terraform apply or destroy.') }
     agent {
         docker {
             image 'hashicorp/terraform:light'
