@@ -10,8 +10,7 @@ terraform {
 }
 
 # Configure the docker provider
-provider "docker" {
-}
+provider "docker" {}
 
 # Create a docker image resource
 # -> docker pull nginx:latest
@@ -20,6 +19,15 @@ resource "docker_image" "nginx" {
   keep_locally = true
 }
 
+resource "docker_container" "nginx" {
+  name    = "nginx"
+  image   = docker_image.nginx.latest
+
+  ports {
+    external = 8080
+    internal = 80
+  }
+}
 
 
 
