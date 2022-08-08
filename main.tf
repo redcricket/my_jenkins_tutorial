@@ -8,7 +8,11 @@ terraform {
 }
 
 provider "docker" {
-  host = "tcp://127.0.0.1:2375/"
+  // didn't work
+  // host = "tcp://127.0.0.1:2375/"a
+  host = "unix:///var/run/docker.sock"
+
+// root      1:04 dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2376 --tlsverify --tlscacert /certs/server/ca.pem --tlscert /certs/server/cert.pem --tlskey /cert
 }
 
 resource "docker_image" "nginx" {
