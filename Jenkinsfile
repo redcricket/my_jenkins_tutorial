@@ -1,5 +1,7 @@
 pipeline {
-    // parameters { choice(name: 'apply_or_destroy', choices: '['apply', 'destroy'], description: 'Run terraform apply or destroy.') }
+/* ToDo:
+see https://stackoverflow.com/questions/47080683/read-interactive-input-in-jenkins-pipeline-to-a-variable
+*/
     agent {
         docker {
             image 'hashicorp/terraform:light'
