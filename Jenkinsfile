@@ -24,7 +24,8 @@ export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
 terraform --version
 terraform init
 terraform providers
-terraform plan
+terraform plan -out the-plan-man
+terraform apply -auto-approve the-plan-man
 ls -al
 '''
                 }
