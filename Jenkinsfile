@@ -27,11 +27,15 @@ export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
 terraform --version
 terraform init
 terraform providers
-env
+# env
 echo "apply or destroy is [$apply_or_destroy]"
-terraform plan -out the-plan-man
-terraform destroy -auto-approve
-#  the-plan-man
+if [ $apply_or_destroy == 'destroy' ]
+then
+    terraform destroy -auto-approve
+else
+    terraform plan -out the-plan-man
+    terraform apply -auto-approve the-plan-man
+fi
 ls -al
 '''
                 }
