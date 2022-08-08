@@ -12,6 +12,17 @@ terraform {
 # Configure the docker provider
 provider "docker" {
 }
+
+# Create a docker image resource
+# -> docker pull nginx:latest
+resource "docker_image" "nginx" {
+  name         = "nginx:latest"
+  keep_locally = true
+}
+
+
+
+
 # Or create a service resource
 # -> same as 'docker service create -d -p 8081:80 --name nginx-service --replicas 2 nginx:latest'
 resource "docker_service" "nginx_service" {
