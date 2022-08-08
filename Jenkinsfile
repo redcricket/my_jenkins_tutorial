@@ -26,6 +26,7 @@ terraform init
 terraform providers
 terraform plan
 ls -al
+'''
                 }
             }
         }
