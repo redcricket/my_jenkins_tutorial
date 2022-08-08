@@ -1,6 +1,6 @@
 pipeline {
     parameters {
-        string(name: 'apply_or_destroy', defaultValue: 'destroy', description: 'Run terraform apply or destroy.')
+        choice(name: 'apply_or_destroy', choices: '['apply', 'destroy'], description: 'Run terraform apply or destroy.')
     }
     agent {
         docker {
@@ -12,7 +12,9 @@ pipeline {
         stage('Hello') {
             steps {
                 echo 'Hello World from Github.'
+                echo "Hello ${params.apply_or_destroy}"
             }
+
         }
         stage('Test') {
             steps {
