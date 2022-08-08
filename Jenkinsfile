@@ -28,7 +28,7 @@ terraform --version
 terraform init
 terraform providers
 # terraform plan -out the-plan-man
-terraform destory -auto-approve
+terraform destroy -auto-approve
 #  the-plan-man
 ls -al
 '''
