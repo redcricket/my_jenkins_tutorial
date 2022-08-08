@@ -26,7 +26,7 @@ see https://stackoverflow.com/questions/47080683/read-interactive-input-in-jenki
 export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
 export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
 terraform --version
-terraform -no-color init
+terraform init -no-color
 if [ $apply_or_destroy == 'destroy' ]
 then
     terraform destroy -auto-approve -no-color
