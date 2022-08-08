@@ -1,56 +1,23 @@
 terraform {
   required_providers {
-    # We recommend pinning to the specific version of the Docker Provider you're using
-    # since new versions are released frequently
-    docker = {
-      source  = "kreuzwerker/docker"
-      version = "2.13.0"
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 4.16"
     }
   }
+
+  required_version = ">= 1.2.0"
 }
 
-# Configure the docker provider
-provider "docker" {}
-
-# Create a docker image resource
-# -> docker pull nginx:latest
-resource "docker_image" "nginx" {
-  name         = "nginx:latest"
-  keep_locally = true
+provider "aws" {
+  region  = "us-west-2"
 }
 
-resource "docker_container" "nginx" {
-  name    = "nginx"
-  image   = docker_image.nginx.latest
+resource "aws_instance" "app_server" {
+  ami           = "ami-830c94e3"
+  instance_type = "t2.micro"
 
-  ports {
-    external = 8080
-    internal = 80
-  }
-}
-
-
-
-# Or create a service resource
-# -> same as 'docker service create -d -p 8081:80 --name nginx-service --replicas 2 nginx:latest'
-resource "docker_service" "nginx_service" {
-  name = "nginx-service"
-  task_spec {
-    container_spec {
-      image = docker_image.nginx.repo_digest
-    }
-  }
-
-  mode {
-    replicated {
-      replicas = 2
-    }
-  }
-
-  endpoint_spec {
-    ports {
-      published_port = 8081
-      target_port    = 80
-    }
+  tags = {
+    Name = "ExampleAppServerInstance"
   }
 }
