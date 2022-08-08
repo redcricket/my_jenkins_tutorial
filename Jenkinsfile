@@ -1,5 +1,7 @@
 pipeline {
-    // parameters { choice(name: 'apply_or_destroy', choices: '['apply', 'destroy'], description: 'Run terraform apply or destroy.') }
+/* ToDo:
+see https://stackoverflow.com/questions/47080683/read-interactive-input-in-jenkins-pipeline-to-a-variable
+*/
     agent {
         docker {
             image 'hashicorp/terraform:light'
@@ -21,22 +23,17 @@ pipeline {
                          string(credentialsId: 'AWS_SECRET_ACCESS_KEY', variable: 'AWS_SECRET_ACCESS_KEY')
                 ]) {
                     sh '''
-ls -al
 export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
 export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
 terraform --version
-terraform init
-terraform providers
-# env
-echo "apply or destroy is [$apply_or_destroy]"
+terraform init -no-color
 if [ $apply_or_destroy == 'destroy' ]
 then
-    terraform destroy -auto-approve
+    terraform destroy -auto-approve -no-color
 else
-    terraform plan -out the-plan-man
-    terraform apply -auto-approve the-plan-man
+    terraform plan -no-color -out the-plan-man
+    terraform apply -no-color -auto-approve the-plan-man
 fi
-ls -al
 '''
                 }
             }
