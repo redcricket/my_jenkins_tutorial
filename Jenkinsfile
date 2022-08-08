@@ -1,4 +1,7 @@
 pipeline {
+    parameters {
+        string(name: 'apply_or_destroy', defaultValue: 'destroy', description: 'Run terraform apply or destroy.')
+    }
     agent {
         docker {
             image 'hashicorp/terraform:light'
@@ -18,6 +21,7 @@ pipeline {
                          string(credentialsId: 'AWS_SECRET_ACCESS_KEY', variable: 'AWS_SECRET_ACCESS_KEY')
                 ]) {
                     sh '''
+echo "${params.apply_or_destroy} World!"
 ls -al
 export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
 export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
