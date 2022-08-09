@@ -12,6 +12,32 @@ pipeline {
                     def whole_file_data = readFile(file: 'the-mop')
                     whole_file_data.split('\n').each { String line ->
                         println("line:${line}")
+                    script {
+                        // Define Variable
+                        def USER_INPUT = input(
+                            message: 'User input required - apply or destroy?',
+                            parameters: [
+                                [$class: 'ChoiceParameterDefinition',
+                                choices: ['apply','destroy'].join('\n'),
+                                name: 'input',
+                                description: 'Select apply or destroy.']
+                            ]
+                        )
+
+                        echo "The answer is: ${USER_INPUT}"
+
+                        if( "${USER_INPUT}" == "apply"){
+                            //do something
+                            sh '''
+                            echo "Execute ["$line]"
+                            '''
+                        } else {
+                            //do something else
+                            sh '''
+                            echo "SKIP ["$line]"
+                            '''
+                        }
+                    }
                     }
                 }
             }
