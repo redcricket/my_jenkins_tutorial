@@ -5,7 +5,6 @@ pipeline {
                 echo 'Hello World from Github.'
                 echo "Hello ${params.apply_or_destroy}"
             }
-
         }
         stage('Test') {
             steps {
@@ -38,4 +37,3 @@ pipeline {
             }
         }
     }
-}
