@@ -12,34 +12,16 @@ pipeline {
                 echo "Hello ${params.apply_or_destroy}"
             }
         }
-        stage('Test') {
-            steps {
-                new File("the-mop").eachLine { line ->
-                    println line
-                    script {
-                            // Define Variable
-                            def USER_INPUT = input(
-                                message: 'User input required - apply or destroy?',
-                                parameters: [
-                                    [$class: 'ChoiceParameterDefinition',
-                                    choices: ['execute','skip'].join('\n'),
-                                    name: 'input',
-                                    description: 'Select apply or destroy.']
-                                ]
-                            )
-
-                            echo "The answer is: ${USER_INPUT}"
-
-                            if( "${USER_INPUT}" == "execute"){
-                                //do something
-                                sh 'echo "$line"'
-                            } else {
-                                //do something else
-                                sh 'echo fuck-you!'
-                            }
-                        }
-                    }
-                }
+        stage('Test-3') {
+          steps {
+            script {
+              def whole_file_data = readFile(file: 'the-mop')
+                whole_file_data.eachLine { String line ->
+                  def (p1, p2) = line.tokenize()
+                  println("line:${line}")
+                  println("p1:${p1} & p2:${p2}")
+              }
             }
+          }
         }
     }
