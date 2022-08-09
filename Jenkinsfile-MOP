@@ -29,12 +29,12 @@ pipeline {
                         if( "${USER_INPUT}" == "execute"){
                             //do something
                             sh '''
-                            echo "Execute [$line]"
+                            echo "Execute [${line}]"
                             '''
                         } else {
                             //do something else
                             sh '''
-                            echo "SKIP [$line]"
+                            echo "SKIP [${line}]"
                             '''
                         }
                     }
