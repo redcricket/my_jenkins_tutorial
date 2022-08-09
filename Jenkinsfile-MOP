@@ -6,22 +6,17 @@ pipeline {
         }
     }
     stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello World from Github.'
-                echo "Hello ${params.apply_or_destroy}"
-            }
-        }
         stage('Test-3') {
-          steps {
-            script {
-              def whole_file_data = readFile(file: 'the-mop')
-                whole_file_data.eachLine { String line ->
-                  def (p1, p2) = line.tokenize()
-                  println("line:${line}")
-                  println("p1:${p1} & p2:${p2}")
-              }
+            steps {
+                script {
+                    def whole_file_data = readFile(file: 'the-mop')
+                    whole_file_data.eachLine { String line ->
+                        def (p1, p2) = line.tokenize()
+                        println("line:${line}")
+                        println("p1:${p1} & p2:${p2}")
+                    }
+                }
             }
-          }
         }
     }
+}
