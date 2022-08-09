@@ -2,4 +2,5 @@ echo "12345"
 ls -l
 pwd
 date
-echo "go suck a dick bitches"
+export FOO_HOME="$(pwd)/thing"
+echo $FOO_HOME
