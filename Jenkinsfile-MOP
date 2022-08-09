@@ -10,7 +10,7 @@ pipeline {
             steps {
                 script {
                     def whole_file_data = readFile(file: 'the-mop')
-                    whole_file_data.eachLine { String line ->
+                    whole_file_data.split('\n').each { String line ->
                         println("line:${line}")
                     }
                 }
