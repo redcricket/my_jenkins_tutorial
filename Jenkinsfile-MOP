@@ -16,12 +16,12 @@ pipeline {
                         // Define Variable
                         def USER_INPUT = input(
                             message: 'User input required - execute or destroy?',
-                            parameters: [
-                                [$class: 'ChoiceParameterDefinition',
+                            parameters: [[
+                                $class: 'ChoiceParameterDefinition',
                                 choices: ['execute','destroy'].join('\n'),
                                 name: 'input',
-                                description: "execute or skip: [${line}]"
-                            ]
+                                description: "execute or skip: ${line}"
+                                ]]
                         )
 
                         echo "The answer is: ${USER_INPUT}"
