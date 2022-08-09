@@ -15,7 +15,7 @@ pipeline {
                     script {
                         // Define Variable
                         def USER_INPUT = input(
-                            message: 'User input required - execute or destroy?',
+                            message: "User input required - execute or skip?",
                             parameters: [[
                                 $class: 'ChoiceParameterDefinition',
                                 choices: ['execute','skip'].join('\n'),
