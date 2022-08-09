@@ -2,3 +2,5 @@ echo "12345"
 ls -l
 pwd
 date
+export FOO_HOME="$(pwd)/thing"
+echo $FOO_HOME
