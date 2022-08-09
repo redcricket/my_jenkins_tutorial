@@ -10,6 +10,16 @@ pipeline {
             steps {
                 script {
                     def whole_file_data = readFile(file: 'the-mop')
+
+                    /********************
+
+                    DO NOT READ COMMANDS LINE BY LINE!!!!!!!
+                    1) READ IN ENTIRE COMMAND(S) FROM FILE
+                    2) AND THEN PROMPT UER TO APPROVE
+                    3) EXECUTE AS SCRIPT
+
+                    I DUNNO
+                    **************************/
                     whole_file_data.split('\n').each { String line ->
                         println("line:${line}")
                     script {
