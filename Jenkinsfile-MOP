@@ -1,0 +1,44 @@
+pipeline {
+    agent {
+        docker {
+            image 'hashicorp/terraform:light'
+            args '-i --entrypoint='
+        }
+    }
+    stages {
+        stage('Test-3') {
+            steps {
+                script {
+                    def whole_file_data = readFile(file: 'the-mop')
+                    whole_file_data.split('\n').each { String line ->
+                        println("line:${line}")
+                    script {
+                        // Define Variable
+                        def USER_INPUT = input(
+                            message: "User input required - execute or skip?",
+                            parameters: [[
+                                $class: 'ChoiceParameterDefinition',
+                                choices: ['execute','skip'].join('\n'),
+                                name: "command=[${line}]",
+                                description: "Choose 'execute' or 'skip', then click 'Proceed' or 'Abort'."
+                                ]]
+                        )
+
+                        echo "The answer is: ${USER_INPUT}"
+
+                        if( "${USER_INPUT}" == "execute"){
+                            //do something
+                            sh "${line}"
+                        } else {
+                            //do something else
+                            sh """
+                            echo "### SKIP [${line}]"
+                            """
+                        }
+                    }
+                    }
+                }
+            }
+        }
+    }
+}
