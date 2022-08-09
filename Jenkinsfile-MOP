@@ -20,7 +20,7 @@ pipeline {
                                 $class: 'ChoiceParameterDefinition',
                                 choices: ['execute','skip'].join('\n'),
                                 name: "command=[${line}]",
-                                description: "execute or skip: ${line}"
+                                description: "Choose 'execute' or 'skip', then click 'Proceed' or 'Abort'."
                                 ]]
                         )
 
