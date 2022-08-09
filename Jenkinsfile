@@ -39,12 +39,12 @@ terraform init -no-color
                     script {
                         // Define Variable
                         def USER_INPUT = input(
-                            message: 'User input required - Some Yes or No question?',
+                            message: 'User input required - apply or destroy?',
                             parameters: [
                                 [$class: 'ChoiceParameterDefinition',
                                 choices: ['apply','destroy'].join('\n'),
                                 name: 'input',
-                                description: 'Menu - select box option']
+                                description: 'Select apply or destroy.']
                             ]
                         )
 
