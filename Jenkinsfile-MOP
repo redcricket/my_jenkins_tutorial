@@ -28,7 +28,11 @@ pipeline {
 
                         if( "${USER_INPUT}" == "execute"){
                             //do something
-                            sh "${line}"
+                            if( "${line}".startsWith('env')) {
+                                Eval.me("${line}")
+                            } else {
+                                sh "${line}"
+                            }
                         } else {
                             //do something else
                             sh """
