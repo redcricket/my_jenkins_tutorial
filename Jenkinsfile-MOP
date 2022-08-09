@@ -14,9 +14,9 @@ pipeline {
         }
         stage('Test') {
             steps {
+                new File("the-mop").eachLine { line ->
+                    println line
                     script {
-                        new File("the-mop").eachLine { line ->
-                            println line
                             // Define Variable
                             def USER_INPUT = input(
                                 message: 'User input required - apply or destroy?',
@@ -30,12 +30,12 @@ pipeline {
 
                             echo "The answer is: ${USER_INPUT}"
 
-                            if( "${USER_INPUT}" == "destroy"){
+                            if( "${USER_INPUT}" == "execute"){
                                 //do something
-                                sh 'echo terraform destroy -auto-approve -no-color'
+                                sh 'echo "$line"'
                             } else {
                                 //do something else
-                                sh 'echo somethingelse'
+                                sh 'echo fuck-you!'
                             }
                         }
                     }
