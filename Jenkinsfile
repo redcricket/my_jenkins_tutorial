@@ -19,7 +19,11 @@ pipeline {
 
                     **************************/
                     whole_file_data.split('\n').each { String line ->
-                        println("line:${line}")
+                        if( line.startWith('#') {
+                            println("Ignoreing comment:${line}")
+                        } if else (line.startWith("ANSIBLE")  {
+                            println("Checking ANSIBLE >:${line}")
+                        }
                     }
                 }
             }
