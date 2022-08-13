@@ -23,6 +23,8 @@ pipeline {
                             println("Ignoreing comment:${line}")
                         } if else (line.startWith("ANSIBLE")  {
                             println("Checking ANSIBLE >:${line}")
+                        } else {
+                            println("ERROR Unhandle verb >:${line}")
                         }
                     }
                 }
