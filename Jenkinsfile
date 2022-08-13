@@ -26,7 +26,6 @@ pipeline {
                         } else {
                             println("ERROR Unhandle verb >:${line}")
                         }
-                        if(condition) {
                     }
                 }
             }
