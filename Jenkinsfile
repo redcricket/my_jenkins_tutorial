@@ -35,11 +35,7 @@ pipeline {
         stage('Confirm pre-flight successful ') {
             steps {
                 script {
-                    // Define Variable
-                    def USER_INPUT = input(
-                            message: "To approve and proceed click Proceed",
-                            description: 'To approve and proceed click Proceed']])
-
+                    def USER_INPUT = input message: 'Approve of pre-flight?', ok: 'Approve', submitter: 'oncall', submitterParameter: 'approving_submitter'
                     println("user input is =>${USER_INPUT}")
                     if( "${USER_INPUT}" == "OK"){
                         println("Hurray ${User} (certified dick head) approves!")
