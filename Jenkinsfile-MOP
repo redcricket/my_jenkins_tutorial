@@ -15,6 +15,8 @@ pipeline {
                     read line by line:
                     PRIMIERE|INVENTORY|LIMIT|PLAYBOOK|OTHER_ARGS
                     ANSIBLEPLAYBOOK|INVENTORY|LIMIT|PLAYBOOK|OTHER_ARGS
+                    ANSIBLE|all|INVENTORY|LIMIT|MODULE|COMMAND|EXTRA_ARGS
+
                     **************************/
                     whole_file_data.split('\n').each { String line ->
                         println("line:${line}")
