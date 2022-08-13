@@ -37,20 +37,17 @@ pipeline {
                 script {
                     // Define Variable
                     def USER_INPUT = input(
-                        message: 'User input required - apply or destroy?',
-                        parameters: [[$class: 'ChoiceParameterDefinition',
-                                choices: ['apply','destroy'].join('\n'),
-                                name: 'input',
-                                description: 'Select apply or destroy.']])
-                        echo "${User} answered : ${USER_INPUT} talk to he/she and stop bothering me."
+                            message: "To approve and proceed click Proceed",
+                            description: 'To approve and proceed click Proceed']])
 
-                        if( "${USER_INPUT}" == "OK"){
-                            println("Hurray ${User} (certified dick head) approves!")
-                        } else {
-                            println("${User} shits on your pre-flight. And says fuck your mother!")
-                            currentBuild.result = 'FAILURE'
-                            return
-                        }
+                    println("user input is =>${USER_INPUT}")
+                    if( "${USER_INPUT}" == "OK"){
+                        println("Hurray ${User} (certified dick head) approves!")
+                    } else {
+                        println("${User} shits on your pre-flight. And says fuck your mother!")
+                        currentBuild.result = 'FAILURE'
+                        return
+                    }
                 }
             }
         }
