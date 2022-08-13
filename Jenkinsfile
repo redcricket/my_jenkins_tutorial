@@ -19,9 +19,9 @@ pipeline {
 
                     **************************/
                     whole_file_data.split('\n').each { String line ->
-                        if((line).startsWith('#')) {
+                        if(line.startsWith('#')) {
                             println("Ignoreing comment:${line}")
-                        } else if (line.startWith("ANSIBLE"))  {
+                        } else if (line.startsWith("ANSIBLE"))  {
                             println("Checking ANSIBLE >:${line}")
                         } else {
                             println("ERROR Unhandle verb >:${line}")
