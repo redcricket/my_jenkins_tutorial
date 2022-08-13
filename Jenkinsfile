@@ -25,6 +25,10 @@ pipeline {
                             println("Checking ANSIBLE >:${line}")
                         } else {
                             println("ERROR Unhandle verb >:${line}")
+                            script {
+                                currentBuild.getRawBuild().getExecutor().interrupt(Result.FAILURE)
+                                sleep(1)   // Interrupt is not blocking and does not take effect immediately.
+                            }
                         }
                     }
                 }
