@@ -12,15 +12,9 @@ pipeline {
                     def whole_file_data = readFile(file: 'the-mop')
 
                     /********************
-
-                    DO NOT READ COMMANDS LINE BY LINE!!!!!!!
-                    1) READ IN ENTIRE COMMAND(S) FROM FILE
-                    2) AND THEN PROMPT UER TO APPROVE
-                    3) EXECUTE AS SCRIPT
-
-                    I DUNNO
                     read line by line:
                     PRIMIERE|INVENTORY|LIMIT|PLAYBOOK|OTHER_ARGS
+                    ANSIBLEPLAYBOOK|INVENTORY|LIMIT|PLAYBOOK|OTHER_ARGS
                     **************************/
                     whole_file_data.split('\n').each { String line ->
                         println("line:${line}")
