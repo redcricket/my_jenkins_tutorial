@@ -32,5 +32,27 @@ pipeline {
                 }
             }
         }
+        stage('Confirm pre-flight successful ') {
+            steps {
+                script {
+                    // Define Variable
+                    def USER_INPUT = input(
+                        message: 'User input required - apply or destroy?',
+                        parameters: [[$class: 'ChoiceParameterDefinition',
+                                choices: ['apply','destroy'].join('\n'),
+                                name: 'input',
+                                description: 'Select apply or destroy.']])
+                        echo "${User} answered : ${USER_INPUT} talk to he/she and stop bothering me."
+
+                        if( "${USER_INPUT}" == "OK"){
+                            println("Hurray ${User} (certified dick head) approves!")
+                        } else {
+                            println("${User} shits on your pre-flight. And says fuck your mother!")
+                            currentBuild.result = 'FAILURE'
+                            return
+                        }
+                }
+            }
+        }
     }
 }
