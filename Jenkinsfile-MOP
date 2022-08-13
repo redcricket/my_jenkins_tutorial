@@ -6,7 +6,7 @@ pipeline {
         }
     }
     stages {
-        stage('Test-3') {
+        stage('Pre-Flight (automate MOP review') {
             steps {
                 script {
                     def whole_file_data = readFile(file: 'the-mop')
@@ -19,6 +19,8 @@ pipeline {
                     3) EXECUTE AS SCRIPT
 
                     I DUNNO
+                    read line by line:
+                    PRIMIERE|INVENTORY|LIMIT|PLAYBOOK|OTHER_ARGS
                     **************************/
                     whole_file_data.split('\n').each { String line ->
                         println("line:${line}")
