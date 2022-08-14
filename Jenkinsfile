@@ -39,6 +39,7 @@ pipeline {
                     input "Now what?"
                 }
             }
+        }
         stage('Execute MOP Step-by-Step') {
             steps {
                 println(whole_file_data[0])
