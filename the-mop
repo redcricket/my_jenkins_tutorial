@@ -2,5 +2,5 @@
 # ANSIBLE|all|hosts|limit|module|command|extra_args
 ANSIBLE|all|hosts|*|shell|ls -al|--list-hosts|-b --become-user=root
 ANSIBLEPLAYBOOK|hosts|ubuntu*|the_playbook.yml|--list-hosts -b --become-user=root
-# FUCKYOU|all|hosts|'*'|shell|pwd|'--list-hosts'
-ANSIBLE|all|hosts|'centos*'|shell|pwd|'--list-hosts'
+# DO NOT PUT QUOTES AROUND *
+ANSIBLE|all|hosts|centos*|shell|pwd|'--list-hosts'
