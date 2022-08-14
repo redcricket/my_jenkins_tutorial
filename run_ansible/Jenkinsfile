@@ -34,8 +34,8 @@ pipeline {
                     pwd
                     ls -la
                     id
-                    date > $HOME/today.txt
-                    cat $HOME/today.txt
+                    # date > $HOME/today.txt
+                    # cat $HOME/today.txt
                     ansible
                     # ansible ${PATTERN} -i ${INVENTORY} -l ${LIMIT} -m ${MODULE} -a ${DASH_A} ${EXTRA_PARAMS}
                     """
