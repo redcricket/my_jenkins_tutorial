@@ -2,7 +2,8 @@ pipeline {
     agent {
         docker {
             // image 'ansible/ansible:default'
-            image 'willhallonline/ansible'
+            // image 'willhallonline/ansible'
+            image 'gableroux/ansible'
             args '-i --entrypoint='
         }
     }
