@@ -61,7 +61,7 @@ pipeline {
                     whole_file_data.split('\n').each { String line ->
                         if(line.startsWith('#')) {
                             println("Ignoreing comment:${line}")
-                        } else if (line.startsWith("ANSIBLE"))  {
+                        } else if (line.startsWith("ANSIBLE|"))  {
                             println("Executing ANSIBLE >:${line}")
                             // build job: '<Project name>', propagate: true, wait: true
                             // build job: '<Project name>', parameters: [[$class: 'StringParameterValue', name: 'param1', value: 'test_param']]
