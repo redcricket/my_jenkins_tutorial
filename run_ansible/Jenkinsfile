@@ -27,7 +27,6 @@ pipeline {
         stage('Execute AD Hoc Ansible.') {
             steps {
                 script {
-                    println("Robinson sucks turds out of dicks!")
                     sh """
                     ansible ${PATTERN} -i ${INVENTORY} -l ${LIMIT} -m ${MODULE} -a ${DASH_A} ${EXTRA_PARAMS}
                     """
