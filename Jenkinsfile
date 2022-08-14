@@ -63,6 +63,27 @@ pipeline {
                             println("Ignoreing comment:${line}")
                         } else if (line.startsWith("ANSIBLE"))  {
                             println("Executing ANSIBLE >:${line}")
+                            // build job: '<Project name>', propagate: true, wait: true
+                            // build job: '<Project name>', parameters: [[$class: 'StringParameterValue', name: 'param1', value: 'test_param']]
+                            // ANSIBLE|all|INVENTORY|LIMIT|MODULE|COMMAND|EXTRA_ARGS
+                            /*
+
+                            string( defaultValue: 'all', name: 'PATTERN', trim: true ),
+                            string( defaultValue: 'hosts', name: 'INVENTORY', trim: true ),
+                            string( defaultValue: '*', name: 'LIMIT', trim: true ),
+                            string( defaultValue: 'shell', name: 'MODULE', trim: true ),
+                            string( defaultValue: 'pwd' ,name: 'DASH_A', trim: true ),
+                            string( defaultValue: '--list-hosts', name: 'EXTRA_PARAMS', trim: true )
+                            */
+                            def (ACTION, PATTERN, INVENTORY, LIMIT, MODULE, DASH_A, EXTRA_PARAMS) = line.tokenize('|')
+                            build job: 'run_ansible', propagate: true, wait: true, parameters: [
+                                [$class: 'StringParameterValue', PATTERN: 'PATTERN', value: PATTERN],
+                                [$class: 'StringParameterValue', INVENTORY: 'INVENTORY', value: INVENTORY],
+                                [$class: 'StringParameterValue', LIMIT: 'LIMIT', value: LIMIT],
+                                [$class: 'StringParameterValue', MODULE: 'MODULE', value: MODULE],
+                                [$class: 'StringParameterValue', DASH_A: 'DASH_A', value: DASH_A],
+                                [$class: 'StringParameterValue', EXTRA_PARAMS: 'EXTRA_PARAMS', value: EXTRA_PARAMS]
+                            ]
                         } else {
                             println("ERROR Unhandle verb >:${line}")
                             currentBuild.result = 'ABORTED'
