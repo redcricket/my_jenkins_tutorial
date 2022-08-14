@@ -42,8 +42,8 @@ pipeline {
         }
         stage('Execute MOP Step-by-Step') {
             steps {
-                whole_file_data.each {
-                    val -> println val
+                script {
+                    whole_file_data.each { val -> println val }
                 }
             }
         }
