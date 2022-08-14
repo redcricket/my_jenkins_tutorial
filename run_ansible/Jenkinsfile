@@ -33,8 +33,10 @@ pipeline {
             }
         }
         stage('All done') {
-            step {
-                println("Robinson sucks turds.")
+            steps {
+                script {
+                    println("Robinson sucks turds.")
+                }
             }
         }
     }
