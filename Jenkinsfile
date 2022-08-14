@@ -25,7 +25,8 @@ pipeline {
                             println("Checking ANSIBLE >:${line}")
                         } else {
                             println("ERROR Unhandle verb >:${line}")
-                            currentBuild.result = 'FAILURE'
+                            currentBuild.result = 'ABORTED'
+                            error('Pre-flish FAILED! Aborting!')
                             return
                         }
                     }
