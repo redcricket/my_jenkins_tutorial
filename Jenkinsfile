@@ -1,4 +1,6 @@
 def whole_file_data
+def MOP_FILE
+
 pipeline {
     agent any
     //agent {
@@ -8,10 +10,23 @@ pipeline {
     //    }
     //}
     stages {
+        stage('Setup parameters') {
+            steps {
+                // PATTERN|INVENTORY|LIMIT|MODULE|DASH_A|EXTRA_PARAMS
+
+                script {
+                    properties([
+                        parameters([
+                            string( defaultValue: 'the-mop', name: 'MOP_FILE', trim: true ),
+                        ])
+                    ])
+                }
+            }
+        }
         stage('Pre-Flight (automate MOP review') {
             steps {
                 script {
-                    whole_file_data = readFile(file: 'the-mop')
+                    whole_file_data = readFile(file: MOP_FILE)
 
                     /********************
                     read line by line:
