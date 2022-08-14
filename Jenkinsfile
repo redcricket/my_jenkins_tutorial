@@ -1,3 +1,4 @@
+def whole_file_data
 pipeline {
     agent {
         docker {
@@ -9,7 +10,7 @@ pipeline {
         stage('Pre-Flight (automate MOP review') {
             steps {
                 script {
-                    def whole_file_data = readFile(file: 'the-mop')
+                    whole_file_data = readFile(file: 'the-mop')
 
                     /********************
                     read line by line:
