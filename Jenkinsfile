@@ -32,13 +32,13 @@ pipeline {
                     PRIMIERE|INVENTORY|LIMIT|PLAYBOOK|OTHER_ARGS
                     ANSIBLEPLAYBOOK|INVENTORY|LIMIT|PLAYBOOK|OTHER_ARGS
                     ANSIBLE|all|INVENTORY|LIMIT|MODULE|COMMAND|EXTRA_ARGS
-
                     **************************/
                     whole_file_data.split('\n').each { String line ->
                         if(line.startsWith('#')) {
                             println("Ignoreing comment:${line}")
-                        } else if (line.startsWith("ANSIBLE"))  {
-                            println("Checking ANSIBLE >:${line}")
+                        } else if (line.startsWith("ANSIBLE|"))  {
+                            // println("Checking ANSIBLE >:${line}")
+                            checkAnsibleAction(line)
                         } else {
                             println("ERROR Unhandle verb >:${line}")
                             currentBuild.result = 'ABORTED'
@@ -101,4 +101,8 @@ pipeline {
             }
         }
     }
+}
+
+def checkAnsibleAction(String line) {
+    println("checkAnsibleAction called with  line = ${line}")
 }
