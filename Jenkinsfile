@@ -37,8 +37,9 @@ pipeline {
                         if(line.startsWith('#')) {
                             println("Ignoreing comment:${line}")
                         } else if (line.startsWith("ANSIBLE|"))  {
-                            // println("Checking ANSIBLE >:${line}")
                             checkAnsibleAction(line)
+                        } else if (line.startsWith("ANSIBLEPLAYBOOK|"))  {
+                            checkAnsiblePlaybookAction(line)
                         } else {
                             println("ERROR Unhandle verb >:${line}")
                             currentBuild.result = 'ABORTED'
@@ -105,4 +106,8 @@ pipeline {
 
 def checkAnsibleAction(String line) {
     println("checkAnsibleAction called with  line = ${line}")
+}
+
+def checkAnsiblePlaybookAction(String line) {
+    println("checkAnsiblePlaybookAction called with  line = ${line}")
 }
