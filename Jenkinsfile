@@ -89,6 +89,8 @@ pipeline {
                             // ANSIBLEPLAYBOOK|INVENTORY|LIMIT|PLAYBOOK|OTHER_ARGS
                             def (ACTION, INVENTORY, LIMIT, PLAYBOOK, EXTRA_PARAMS) = line.tokenize('|')
                             println("${ACTION}, ${INVENTORY}, ${LIMIT}, ${PLAYBOOK}, ${EXTRA_PARAMS}")
+                            currentBuild.result = 'ABORTED'
+                            error('FAILED! ACTION=ANSIBLEPLAYBOOK Not implemented yet.')
                         } else {
                             println("ERROR Unhandle verb >:${line}")
                             currentBuild.result = 'ABORTED'
