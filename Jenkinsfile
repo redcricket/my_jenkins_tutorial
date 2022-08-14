@@ -33,7 +33,7 @@ pipeline {
                 }
             }
         }
-        stage('Execute MOP Step-by-Step') {
+        stage('Approve MOP Step-by-Step') {
             steps {
                 script {
                     input "Now what?"
