@@ -3,30 +3,17 @@ pipeline {
     stages {
         stage('Setup parameters') {
             steps {
+                // PATTERN|INVENTORY|LIMIT|MODULE|DASH_A|EXTRA_PARAMS
+
                 script {
                     properties([
                         parameters([
-                            choice(
-                                choices: ['ONE', 'TWO'],
-                                name: 'PARAMETER_01'
-                            ),
-                            booleanParam(
-                                defaultValue: true,
-                                description: '',
-                                name: 'BOOLEAN'
-                            ),
-                            text(
-                                defaultValue: '''
-                                this is a multi-line
-                                string parameter example
-                                ''',
-                                 name: 'MULTI-LINE-STRING'
-                            ),
-                            string(
-                                defaultValue: 'scriptcrunch',
-                                name: 'STRING-PARAMETER',
-                                trim: true
-                            )
+                            string( defaultValue: 'all', name: 'PATTERN', trim: true )
+                            string( defaultValue: 'hosts', name: 'INVENTORY', trim: true )
+                            string( defaultValue: '*', name: 'LIMIT', trim: true )
+                            string( defaultValue: 'shell' name: 'MODULE', trim: true )
+                            string( defaultValue: 'pwd' name: 'DASH_A', trim: true )
+                            string( defaultValue: '--list-hosts' name: 'EXTRA_PARAMS', trim: true )
                         ])
                     ])
                 }
@@ -35,7 +22,7 @@ pipeline {
         stage('All done') {
             steps {
                 script {
-                    println("Robinson sucks turds.")
+                    println("Robinson sucks turds out of dicks!")
                 }
             }
         }
