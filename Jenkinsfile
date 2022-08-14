@@ -1,11 +1,12 @@
 def whole_file_data
 pipeline {
-    agent {
-        docker {
-            image 'ansible/ansible:default'
-            args '-i --entrypoint='
-        }
-    }
+    agent any
+    //agent {
+    //    docker {
+    //        image 'ansible/ansible:default'
+    //        args '-i --entrypoint='
+    //    }
+    //}
     stages {
         stage('Pre-Flight (automate MOP review') {
             steps {
