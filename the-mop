@@ -1,5 +1,5 @@
 # ansible all -i hosts -l '*' -m shell -a "pwd"
 # ANSIBLE|all|hosts|limit|module|command|extra_args
-ANSIBLE|all|hosts|'*'|shell|ls -al|'-b'
+ANSIBLE|all|hosts|'\'*\''|shell|ls -al|'-b'
 # FUCKYOU|all|hosts|'*'|shell|pwd|'--list-hosts'
 ANSIBLE|all|hosts|'centos*'|shell|pwd|'--list-hosts'
