@@ -35,6 +35,7 @@ pipeline {
                     ls -la
                     id
                     echo ${WORKSPACE_TMP}
+                    # echo ${MY_DEFAULT_LOCAL_TMP}
                     # ansible ${PATTERN} -i ${INVENTORY} -l ${LIMIT} -m ${MODULE} -a ${DASH_A} ${EXTRA_PARAMS}
                     """
                 }
