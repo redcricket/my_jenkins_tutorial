@@ -35,7 +35,7 @@ pipeline {
         stage('Execute MOP Step-by-Step') {
             steps {
                 script {
-                    println("Do we still have access to whole_file_data? $(whole_file_data)")
+                    println("Do we still have access to whole_file_data? ${whole_file_data}")
                     def USER_INPUT = input message: 'Approve of pre-flight?', ok: 'Approve', submitter: 'oncall',
                     submitterParameter: 'approving_submitter'
                     println("user input is =>${USER_INPUT}")
