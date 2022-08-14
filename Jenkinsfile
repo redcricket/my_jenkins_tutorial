@@ -90,7 +90,7 @@ pipeline {
                             // ANSIBLEPLAYBOOK|INVENTORY|LIMIT|PLAYBOOK|OTHER_ARGS
                             def (ACTION, INVENTORY, LIMIT, PLAYBOOK, EXTRA_PARAMS) = line.tokenize('|')
                             println("${ACTION}, ${INVENTORY}, ${LIMIT}, ${PLAYBOOK}, ${EXTRA_PARAMS}")
-                            build job: 'run_ansible', propagate: true, wait: true, parameters: [
+                            build job: 'run_ansibleplaybook', propagate: true, wait: true, parameters: [
                                 [$class: 'StringParameterValue', name: 'INVENTORY', value: INVENTORY],
                                 [$class: 'StringParameterValue', name: 'LIMIT', value: LIMIT],
                                 [$class: 'StringParameterValue', name: 'PLAYBOOK', value: PLAYBOOK],
