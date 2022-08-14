@@ -85,6 +85,10 @@ pipeline {
                                 [$class: 'StringParameterValue', name: 'DASH_A', value: DASH_A],
                                 [$class: 'StringParameterValue', name: 'EXTRA_PARAMS', value: EXTRA_PARAMS]
                             ]
+                        } else if (line.startsWith("ANSIBLEPLAYBOOK|"))  {
+                            // ANSIBLEPLAYBOOK|INVENTORY|LIMIT|PLAYBOOK|OTHER_ARGS
+                            def (ACTION, INVENTORY, LIMIT, PLAYBOOK, EXTRA_PARAMS) = line.tokenize('|')
+                            println("${ACTION}, ${INVENTORY}, ${LIMIT}, ${PLAYBOOK}, ${EXTRA_PARAMS}")
                         } else {
                             println("ERROR Unhandle verb >:${line}")
                             currentBuild.result = 'ABORTED'
