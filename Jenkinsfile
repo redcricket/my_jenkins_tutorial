@@ -36,18 +36,11 @@ pipeline {
         stage('Execute MOP Step-by-Step') {
             steps {
                 script {
-                    println("Do we still have access to whole_file_data? ${whole_file_data}")
-                    def USER_INPUT = input message: 'Approve of pre-flight?', ok: 'Approve', submitter: 'oncall',
-                    submitterParameter: 'approving_submitter'
-                    println("user input is =>${USER_INPUT}")
-                    if( "${USER_INPUT}" == "OK"){
-                        println("Hurray ${User} (certified dick head) approves!")
-                    } else {
-                        println("${User} shits on your pre-flight. And says fuck your mother!")
-                        currentBuild.result = 'FAILURE'
-                        return
-                    }
+                    input "Now what?"
                 }
+            }
+            steps {
+                println(whole_file_data[0])
             }
         }
     }
