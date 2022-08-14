@@ -34,6 +34,8 @@ pipeline {
                     pwd
                     ls -la
                     id
+                    echo ${WORKSPACE_TMP}
+                    DEFAULT_LOCAL_TMP="/tmp"
                     echo ${DEFAULT_LOCAL_TMP}
                     # =$WORKSPACE_TMP}
                     # ansible ${PATTERN} -i ${INVENTORY} -l ${LIMIT} -m ${MODULE} -a ${DASH_A} ${EXTRA_PARAMS}
