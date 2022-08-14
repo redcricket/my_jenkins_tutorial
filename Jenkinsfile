@@ -110,6 +110,7 @@ pipeline {
 
 def checkAnsibleAction(String line) {
     println("checkAnsibleAction called with  line = ${line}")
+    def (ACTION, PATTERN, INVENTORY, LIMIT, MODULE, DASH_A, EXTRA_PARAMS) = line.tokenize('|')
     build job: 'run_ansible', propagate: true, wait: true, parameters: [
         [$class: 'StringParameterValue', name: 'PATTERN', value: PATTERN],
         [$class: 'StringParameterValue', name: 'INVENTORY', value: INVENTORY],
@@ -121,9 +122,32 @@ def checkAnsibleAction(String line) {
 
 def checkAnsiblePlaybookAction(String line) {
     println("checkAnsiblePlaybookAction called with  line = ${line}")
+    def (ACTION, INVENTORY, LIMIT, PLAYBOOK, EXTRA_PARAMS) = line.tokenize('|')
     build job: 'run_ansibleplaybook', propagate: true, wait: true, parameters: [
         [$class: 'StringParameterValue', name: 'INVENTORY', value: INVENTORY],
         [$class: 'StringParameterValue', name: 'LIMIT', value: LIMIT],
         [$class: 'StringParameterValue', name: 'PLAYBOOK', value: PLAYBOOK],
         [$class: 'StringParameterValue', name: 'EXTRA_PARAMS', value: EXTRA_PARAMS + ' --list-hosts']]
+}
+
+def runAnsibleAction(String line) {
+    println("checkAnsibleAction called with  line = ${line}")
+    def (ACTION, PATTERN, INVENTORY, LIMIT, MODULE, DASH_A, EXTRA_PARAMS) = line.tokenize('|')
+    build job: 'run_ansible', propagate: true, wait: true, parameters: [
+        [$class: 'StringParameterValue', name: 'PATTERN', value: PATTERN],
+        [$class: 'StringParameterValue', name: 'INVENTORY', value: INVENTORY],
+        [$class: 'StringParameterValue', name: 'LIMIT', value: LIMIT],
+        [$class: 'StringParameterValue', name: 'MODULE', value: MODULE],
+        [$class: 'StringParameterValue', name: 'DASH_A', value: DASH_A],
+        [$class: 'StringParameterValue', name: 'EXTRA_PARAMS', value: EXTRA_PARAMS]]
+}
+
+def runAnsiblePlaybookAction(String line) {
+    println("checkAnsiblePlaybookAction called with  line = ${line}")
+    def (ACTION, INVENTORY, LIMIT, PLAYBOOK, EXTRA_PARAMS) = line.tokenize('|')
+    build job: 'run_ansibleplaybook', propagate: true, wait: true, parameters: [
+        [$class: 'StringParameterValue', name: 'INVENTORY', value: INVENTORY],
+        [$class: 'StringParameterValue', name: 'LIMIT', value: LIMIT],
+        [$class: 'StringParameterValue', name: 'PLAYBOOK', value: PLAYBOOK],
+        [$class: 'StringParameterValue', name: 'EXTRA_PARAMS', value: EXTRA_PARAMS]]
 }
