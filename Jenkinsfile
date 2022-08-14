@@ -58,7 +58,17 @@ pipeline {
         stage('Execute MOP Step-by-Step') {
             steps {
                 script {
-                    whole_file_data.split('\n').each { val -> println val }
+                    whole_file_data.split('\n').each { String line ->
+                        if(line.startsWith('#')) {
+                            println("Ignoreing comment:${line}")
+                        } else if (line.startsWith("ANSIBLE"))  {
+                            println("Executing ANSIBLE >:${line}")
+                        } else {
+                            println("ERROR Unhandle verb >:${line}")
+                            currentBuild.result = 'ABORTED'
+                            error('Pre-fligth FAILED! Aborting! Look above for error message.')
+                        }
+                    }
                 }
             }
         }
