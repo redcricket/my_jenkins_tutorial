@@ -26,8 +26,7 @@ pipeline {
                         } else {
                             println("ERROR Unhandle verb >:${line}")
                             currentBuild.result = 'ABORTED'
-                            error('Pre-flish FAILED! Aborting!')
-                            return
+                            error('Pre-fligth FAILED! Aborting! Look above for error message.')
                         }
                     }
                 }
