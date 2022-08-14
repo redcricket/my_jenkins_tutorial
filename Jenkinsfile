@@ -32,10 +32,12 @@ pipeline {
                 }
             }
         }
-        stage('Confirm pre-flight successful ') {
+        stage('Execute MOP Step-by-Step') {
             steps {
                 script {
-                    def USER_INPUT = input message: 'Approve of pre-flight?', ok: 'Approve', submitter: 'oncall', submitterParameter: 'approving_submitter'
+                    println("Do we still have access to whole_file_data? $(whole_file_data)")
+                    def USER_INPUT = input message: 'Approve of pre-flight?', ok: 'Approve', submitter: 'oncall',
+                    submitterParameter: 'approving_submitter'
                     println("user input is =>${USER_INPUT}")
                     if( "${USER_INPUT}" == "OK"){
                         println("Hurray ${User} (certified dick head) approves!")
