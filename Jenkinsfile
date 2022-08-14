@@ -1,5 +1,4 @@
 def whole_file_data
-def MOP_FILE
 
 pipeline {
     agent any
