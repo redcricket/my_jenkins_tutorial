@@ -1,6 +1,7 @@
-echo "12345"
-ls -l
-pwd
-date
-env['FOO_HOME'] = "./thing"
-echo $FOO_HOME
+# ansible all -i hosts -l '*' -m shell -a "pwd"
+# ANSIBLE|all|hosts|limit|module|command|extra_args
+# DO NOT PUT QUOTES AROUND *
+# ANSIBLE|all|hosts|*|shell|ls -al|-b --become-user=root
+# ANSIBLE|all|hosts|centos*|shell|pwd| |
+ANSIBLEPLAYBOOK|,localhost| |the_playbook.yml|-vvv --connection=local --user root
+# ANSIBLEPLAYBOOK|hosts|ubuntu*|the_playbook.yml|-b --become-user=root

@@ -1,55 +1,25 @@
 pipeline {
     agent {
         docker {
-            image 'hashicorp/terraform:light'
+            image 'ansible/ansible:default'
             args '-i --entrypoint='
         }
     }
     stages {
-        stage('Test-3') {
+        stage('Pre-Flight (automate MOP review') {
             steps {
                 script {
                     def whole_file_data = readFile(file: 'the-mop')
 
                     /********************
+                    read line by line:
+                    PRIMIERE|INVENTORY|LIMIT|PLAYBOOK|OTHER_ARGS
+                    ANSIBLEPLAYBOOK|INVENTORY|LIMIT|PLAYBOOK|OTHER_ARGS
+                    ANSIBLE|all|INVENTORY|LIMIT|MODULE|COMMAND|EXTRA_ARGS
 
-                    DO NOT READ COMMANDS LINE BY LINE!!!!!!!
-                    1) READ IN ENTIRE COMMAND(S) FROM FILE
-                    2) AND THEN PROMPT UER TO APPROVE
-                    3) EXECUTE AS SCRIPT
-
-                    I DUNNO
                     **************************/
                     whole_file_data.split('\n').each { String line ->
                         println("line:${line}")
-                    script {
-                        // Define Variable
-                        def USER_INPUT = input(
-                            message: "User input required - execute or skip?",
-                            parameters: [[
-                                $class: 'ChoiceParameterDefinition',
-                                choices: ['execute','skip'].join('\n'),
-                                name: "command=[${line}]",
-                                description: "Choose 'execute' or 'skip', then click 'Proceed' or 'Abort'."
-                                ]]
-                        )
-
-                        echo "The answer is: ${USER_INPUT}"
-
-                        if( "${USER_INPUT}" == "execute"){
-                            //do something
-                            if( "${line}".startsWith('env')) {
-                                Eval.me("${line}")
-                            } else {
-                                sh "${line}"
-                            }
-                        } else {
-                            //do something else
-                            sh """
-                            echo "### SKIP [${line}]"
-                            """
-                        }
-                    }
                     }
                 }
             }
