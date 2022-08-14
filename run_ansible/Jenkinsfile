@@ -29,6 +29,7 @@ pipeline {
         stage('Execute AD Hoc Ansible.') {
             steps {
                 script {
+                    env.DEFAULT_LOCAL_TMP = env.WORKSPACE_TMP
                     sh """
                     env
                     pwd
