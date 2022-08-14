@@ -76,6 +76,7 @@ pipeline {
                             string( defaultValue: '--list-hosts', name: 'EXTRA_PARAMS', trim: true )
                             */
                             def (ACTION, PATTERN, INVENTORY, LIMIT, MODULE, DASH_A, EXTRA_PARAMS) = line.tokenize('|')
+                            println (ACTION, PATTERN, INVENTORY, LIMIT, MODULE, DASH_A, EXTRA_PARAMS)
                             build job: 'run_ansible', propagate: true, wait: true, parameters: [
                                 [$class: 'StringParameterValue', PATTERN: 'PATTERN', value: PATTERN],
                                 [$class: 'StringParameterValue', INVENTORY: 'INVENTORY', value: INVENTORY],
