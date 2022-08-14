@@ -78,12 +78,12 @@ pipeline {
                             def (ACTION, PATTERN, INVENTORY, LIMIT, MODULE, DASH_A, EXTRA_PARAMS) = line.tokenize('|')
                             println ("${ACTION}, ${PATTERN}, ${INVENTORY}, ${LIMIT}, ${MODULE}, ${DASH_A}, ${EXTRA_PARAMS}")
                             build job: 'run_ansible', propagate: true, wait: true, parameters: [
-                                [$class: 'StringParameterValue', PATTERN: 'PATTERN', value: PATTERN],
-                                [$class: 'StringParameterValue', INVENTORY: 'INVENTORY', value: INVENTORY],
-                                [$class: 'StringParameterValue', LIMIT: 'LIMIT', value: LIMIT],
-                                [$class: 'StringParameterValue', MODULE: 'MODULE', value: MODULE],
-                                [$class: 'StringParameterValue', DASH_A: 'DASH_A', value: DASH_A],
-                                [$class: 'StringParameterValue', EXTRA_PARAMS: 'EXTRA_PARAMS', value: EXTRA_PARAMS]
+                                [$class: 'StringParameterValue', name: 'PATTERN', value: PATTERN],
+                                [$class: 'StringParameterValue', name: 'INVENTORY', value: INVENTORY],
+                                [$class: 'StringParameterValue', name: 'LIMIT', value: LIMIT],
+                                [$class: 'StringParameterValue', name: 'MODULE', value: MODULE],
+                                [$class: 'StringParameterValue', name: 'DASH_A', value: DASH_A],
+                                [$class: 'StringParameterValue', name: 'EXTRA_PARAMS', value: EXTRA_PARAMS]
                             ]
                         } else {
                             println("ERROR Unhandle verb >:${line}")
