@@ -29,6 +29,7 @@ pipeline {
             steps {
                 script {
                     sh """
+                    ansible
                     ansible ${PATTERN} -i ${INVENTORY} -l ${LIMIT} -m ${MODULE} -a ${DASH_A} ${EXTRA_PARAMS}
                     """
                 }
