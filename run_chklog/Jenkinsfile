@@ -6,7 +6,7 @@ pipeline {
                 script {
                     properties([
                         parameters([
-                            string( defaultValue: 'the-log.log', name: 'LOGFILE', trim: true ),
+                            string( defaultValue: '/tmp/the-log.log', name: 'LOGFILE', trim: true ),
                         ])
                     ])
                 }
@@ -20,7 +20,7 @@ pipeline {
 
                     sh """
                     echo "Log file is ${LOGFILE}."
-                    ls -la
+                    ls -la ${LOGFILE} .
                     grep FAIL ${LOGFILE}
                     """
                 }

@@ -33,9 +33,9 @@ pipeline {
                     sh """
                     echo ${WORKSPACE_TMP}
                     echo ${DEFAULT_LOCAL_TMP}
-                    ansible-playbook -i ${INVENTORY} -l "${LIMIT}" ${PLAYBOOK} ${EXTRA_PARAMS} |tee the-log.log
-                    cat the-log.log
-                    ls -l the-log.log
+                    ansible-playbook -i ${INVENTORY} -l "${LIMIT}" ${PLAYBOOK} ${EXTRA_PARAMS} |tee /tmp/the-log.log
+                    cat /tmp/the-log.log
+                    ls -l /tmp/the-log.log
                     """
                 }
             }
