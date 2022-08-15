@@ -30,8 +30,10 @@ pipeline {
 
                     sh """
                     echo "Log file is ${LOGFILE}."
-                    ls -la ${LOGFILE} .
-                    grep FAIL ${LOGFILE}
+                    echo "+++++++"
+                    cat ${LOGFILE}
+                    echo "+++++++"
+                    grep FAIL ${LOGFILE} && exit 1
                     """
                 }
             }
