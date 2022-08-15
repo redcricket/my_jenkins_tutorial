@@ -40,7 +40,7 @@ pipeline {
                             checkAnsibleAction(line)
                         } else if (line.startsWith("ANSIBLEPLAYBOOK|"))  {
                             checkAnsiblePlaybookAction(line)
-                        } else if (line.startsWith("CHECKLOG|"))  {
+                        } else if (line.startsWith("CHKLOG|"))  {
                             println("No pre-flight needed for CHKLOG.")
                         } else {
                             println("ERROR Unhandle verb >:${line}")
