@@ -34,6 +34,7 @@ pipeline {
                     cat ${LOGFILE}
                     echo "+++++++"
                     grep FAIL ${LOGFILE} && exit 1
+                    exit 0
                     """
                 }
             }
