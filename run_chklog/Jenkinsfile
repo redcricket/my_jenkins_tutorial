@@ -1,0 +1,43 @@
+pipeline {
+    agent {
+        docker {
+            // image 'ansible/ansible:default'
+            // image 'willhallonline/ansible'
+            image 'gableroux/ansible'
+            // args '-i --entrypoint='
+            // use -v so that our ansible container will write to
+            // the filesystem of jenkins server.
+            args '-v /var/jenkins_home/logs:/tmp/logs -i --entrypoint='
+        }
+    }
+    stages {
+        stage('Setup parameters') {
+            steps {
+                script {
+                    properties([
+                        parameters([
+                            string( defaultValue: '/tmp/the-log.log', name: 'LOGFILE', trim: true ),
+                        ])
+                    ])
+                }
+            }
+        }
+        stage('Execute chklog.') {
+            steps {
+                script {
+                    env.DEFAULT_LOCAL_TMP = env.WORKSPACE_TMP
+                    env.HOME = env.WORKSPACE
+
+                    sh """
+                    echo "Log file is ${LOGFILE}."
+                    echo "+++++++"
+                    cat ${LOGFILE}
+                    echo "+++++++"
+                    grep FAIL ${LOGFILE} && exit 1
+                    exit 0
+                    """
+                }
+            }
+        }
+    }
+}

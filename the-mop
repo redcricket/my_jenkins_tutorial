@@ -3,5 +3,7 @@
 # DO NOT PUT QUOTES AROUND *
 # ANSIBLE|all|hosts|*|shell|ls -al|-b --become-user=root
 # ANSIBLE|all|hosts|centos*|shell|pwd| |
-ANSIBLEPLAYBOOK|,localhost| |the_playbook.yml|-vvv --connection=local --user root
+ANSIBLEPLAYBOOK|,localhost| |the_playbook.yml|-vvv --connection=local --user root --list-hosts
+CHKLOG|
+ANSIBLEPLAYBOOK|,localhost| |the_playbook.yml|-vvv --connection=local
 # ANSIBLEPLAYBOOK|hosts|ubuntu*|the_playbook.yml|-b --become-user=root

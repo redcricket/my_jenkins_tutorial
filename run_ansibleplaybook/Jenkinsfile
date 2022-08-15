@@ -4,7 +4,10 @@ pipeline {
             // image 'ansible/ansible:default'
             // image 'willhallonline/ansible'
             image 'gableroux/ansible'
-            args '-i --entrypoint='
+            // args '-i --entrypoint='
+            // use -v so that our ansible container will write to
+            // the filesystem of jenkins server.
+            args '-v /var/jenkins_home/logs:/tmp/logs -i --entrypoint='
         }
     }
     stages {
@@ -24,16 +27,23 @@ pipeline {
                 }
             }
         }
-        stage('Execute AD Hoc Ansible.') {
+        stage('Execute Ansible Playbook.') {
             steps {
                 script {
+                    sh '''
+                    # This is only needed for Jenkin running in docker container.
+                    # echo "tempuser:x:$(id -u):$(id -g):,,,:${HOME}:/bin/bash" >> /etc/passwd
+                    # echo "tempuser:x:$(id -G | cut -d' ' -f 2)" >> /etc/group
+                    '''
+                    // these two lines where needed for Jenkins running in docker container.
                     env.DEFAULT_LOCAL_TMP = env.WORKSPACE_TMP
                     env.HOME = env.WORKSPACE
-
                     sh """
-                    echo ${WORKSPACE_TMP}
-                    echo ${DEFAULT_LOCAL_TMP}
-                    ansible-playbook -i ${INVENTORY} -l "${LIMIT}" ${PLAYBOOK} ${EXTRA_PARAMS}
+                    env | grep BUILD
+                    echo ${BUILD_TAG} >> /tmp/logs/the-log.log
+                    ansible-playbook -i ${INVENTORY} -l "${LIMIT}" ${PLAYBOOK} ${EXTRA_PARAMS} |tee -a /tmp/logs/the-log.log
+                    cat /tmp/logs/the-log.log
+                    ls -l /tmp/logs/the-log.log
                     """
                 }
             }
