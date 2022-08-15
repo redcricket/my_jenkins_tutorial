@@ -137,6 +137,7 @@ def checkLog() {
                 name: 'logFile'), ]
     )
 
+    println(userInput)
     // Save to variables. Default to empty string if not found.
     logFile = userInput.logFile?:'not found'
     println("Check log file ${logFile}")
