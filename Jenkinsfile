@@ -136,4 +136,6 @@ def checkLog() {
                 name: 'logFile'), ]
     )
     println("Check log file ${logFile}")
+    build job: 'run_chklog', propagate: true, wait: true, parameters: [
+        [$class: 'StringParameterValue', name: 'LOGFILE', value: logFile]]
 }
