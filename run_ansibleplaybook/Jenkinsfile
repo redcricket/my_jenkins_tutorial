@@ -33,8 +33,8 @@ pipeline {
                     sh """
                     echo ${WORKSPACE_TMP}
                     echo ${DEFAULT_LOCAL_TMP}
-                    echo "tempuser:x:$(id -u):$(id -g):,,,:${HOME}:/bin/bash" >> /etc/passwd
-                    echo "tempuser:x:$(id -G | cut -d' ' -f 2)" >> /etc/group
+                    #echo "tempuser:x:$(id -u):$(id -g):,,,:${HOME}:/bin/bash" >> /etc/passwd
+                    #echo "tempuser:x:$(id -G | cut -d' ' -f 2)" >> /etc/group
                     ansible-playbook -i ${INVENTORY} -l "${LIMIT}" ${PLAYBOOK} ${EXTRA_PARAMS} |tee /tmp/the-log.log
                     cat /tmp/the-log.log
                     ls -l /tmp/the-log.log
