@@ -27,6 +27,10 @@ pipeline {
         stage('Execute Ansible Playbook.') {
             steps {
                 script {
+                    sh '''
+                    echo "tempuser:x:$(id -u):$(id -g):,,,:${HOME}:/bin/bash" >> /etc/passwd
+                    echo "tempuser:x:$(id -G | cut -d' ' -f 2)" >> /etc/group
+                    '''
                     env.DEFAULT_LOCAL_TMP = env.WORKSPACE_TMP
                     env.HOME = env.WORKSPACE
                     sh """
