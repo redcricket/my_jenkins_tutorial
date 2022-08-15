@@ -2,12 +2,6 @@ def whole_file_data
 
 pipeline {
     agent any
-    //agent {
-    //    docker {
-    //        image 'ansible/ansible:default'
-    //        args '-i --entrypoint='
-    //    }
-    //}
     stages {
         stage('Setup parameters') {
             steps {
