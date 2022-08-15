@@ -105,7 +105,7 @@ def checkAnsiblePlaybookAction(String line) {
 }
 
 def runAnsibleAction(String line) {
-    println("checkAnsibleAction called with  line = ${line}")
+    println("runAnsibleAction called with  line = ${line}")
     def (ACTION, PATTERN, INVENTORY, LIMIT, MODULE, DASH_A, EXTRA_PARAMS) = line.tokenize('|')
     build job: 'run_ansible', propagate: true, wait: true, parameters: [
         [$class: 'StringParameterValue', name: 'PATTERN', value: PATTERN],
@@ -117,7 +117,7 @@ def runAnsibleAction(String line) {
 }
 
 def runAnsiblePlaybookAction(String line) {
-    println("checkAnsiblePlaybookAction called with  line = ${line}")
+    println("runAnsiblePlaybookAction called with  line = ${line}")
     def (ACTION, INVENTORY, LIMIT, PLAYBOOK, EXTRA_PARAMS) = line.tokenize('|')
     build job: 'run_ansibleplaybook', propagate: true, wait: true, parameters: [
         [$class: 'StringParameterValue', name: 'INVENTORY', value: INVENTORY],
