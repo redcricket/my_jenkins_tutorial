@@ -13,8 +13,6 @@ pipeline {
     stages {
         stage('Setup parameters') {
             steps {
-                // PATTERN|INVENTORY|LIMIT|MODULE|DASH_A|EXTRA_PARAMS
-
                 script {
                     properties([
                         parameters([
