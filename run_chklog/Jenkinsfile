@@ -1,39 +1,26 @@
 pipeline {
-    agent {
-        docker {
-            // image 'ansible/ansible:default'
-            // image 'willhallonline/ansible'
-            image 'gableroux/ansible'
-            args '-i --entrypoint='
-        }
-    }
+    agent any
     stages {
         stage('Setup parameters') {
             steps {
-                // PATTERN|INVENTORY|LIMIT|MODULE|DASH_A|EXTRA_PARAMS
-
                 script {
                     properties([
                         parameters([
-                            string( defaultValue: 'hosts', name: 'INVENTORY', trim: true ),
-                            string( defaultValue: '\'*\'', name: 'LIMIT', trim: true ),
-                            string( defaultValue: 'shell', name: 'PLAYBOOK', trim: true ),
-                            string( defaultValue: '--list-hosts', name: 'EXTRA_PARAMS', trim: true )
+                            string( name: 'LOGFILE', trim: true ),
                         ])
                     ])
                 }
             }
         }
-        stage('Execute AD Hoc Ansible.') {
+        stage('Execute chklog.') {
             steps {
                 script {
                     env.DEFAULT_LOCAL_TMP = env.WORKSPACE_TMP
                     env.HOME = env.WORKSPACE
 
                     sh """
-                    echo ${WORKSPACE_TMP}
-                    echo ${DEFAULT_LOCAL_TMP}
-                    ansible-playbook -i ${INVENTORY} -l "${LIMIT}" ${PLAYBOOK} ${EXTRA_PARAMS}
+                    echo "Log file is ${LOGFILE}."
+                    grep FAIL ${LOGFILE}
                     """
                 }
             }
