@@ -6,4 +6,5 @@
 ANSIBLEPLAYBOOK|,localhost| |the_playbook.yml|-vvv --connection=local --user root --list-hosts
 CHKLOG|
 ANSIBLEPLAYBOOK|,localhost| |the_playbook.yml|-vvv --connection=local
+CHKLOG|
 # ANSIBLEPLAYBOOK|hosts|ubuntu*|the_playbook.yml|-b --become-user=root
