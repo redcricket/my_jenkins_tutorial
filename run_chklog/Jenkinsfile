@@ -20,6 +20,7 @@ pipeline {
 
                     sh """
                     echo "Log file is ${LOGFILE}."
+                    ls -la
                     grep FAIL ${LOGFILE}
                     """
                 }
