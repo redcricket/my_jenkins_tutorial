@@ -5,6 +5,8 @@ pipeline {
             // image 'willhallonline/ansible'
             image 'gableroux/ansible'
             // args '-i --entrypoint='
+            // use -v so that our ansible container will write to
+            // the filesystem of jenkins server.
             args '-v /var/jenkins_home/logs:/tmp/logs -i --entrypoint='
         }
     }
