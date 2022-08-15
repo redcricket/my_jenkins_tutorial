@@ -33,7 +33,7 @@ pipeline {
                     sh """
                     echo ${WORKSPACE_TMP}
                     echo ${DEFAULT_LOCAL_TMP}
-                    ansible-playbook -i ${INVENTORY} -l "${LIMIT}" ${PLAYBOOK} ${EXTRA_PARAMS}
+                    ansible-playbook -i ${INVENTORY} -l "${LIMIT}" ${PLAYBOOK} ${EXTRA_PARAMS} |tee the-log.log
                     """
                 }
             }
