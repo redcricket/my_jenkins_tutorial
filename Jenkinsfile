@@ -127,18 +127,13 @@ def runAnsiblePlaybookAction(String line) {
 }
 
 def checkLog() {
-    def logFile
 
-    def userInput = input(
+    def logFile = input(
         id: 'userInput', message: 'Enter log filename :?',
         parameters: [
             string(defaultValue: 'None',
                 description: 'Log file to check.',
                 name: 'logFile'), ]
     )
-
-    println(userInput)
-    // Save to variables. Default to empty string if not found.
-    logFile = userInput.logFile?:'not found'
     println("Check log file ${logFile}")
 }
