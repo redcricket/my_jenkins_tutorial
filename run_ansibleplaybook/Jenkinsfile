@@ -31,8 +31,8 @@ pipeline {
                 script {
                     sh '''
                     # This is only needed for Jenkin running in docker container.
-                    echo "tempuser:x:$(id -u):$(id -g):,,,:${HOME}:/bin/bash" >> /etc/passwd
-                    echo "tempuser:x:$(id -G | cut -d' ' -f 2)" >> /etc/group
+                    # echo "tempuser:x:$(id -u):$(id -g):,,,:${HOME}:/bin/bash" >> /etc/passwd
+                    # echo "tempuser:x:$(id -G | cut -d' ' -f 2)" >> /etc/group
                     '''
                     // these two lines where needed for Jenkins running in docker container.
                     env.DEFAULT_LOCAL_TMP = env.WORKSPACE_TMP
