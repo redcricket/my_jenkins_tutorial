@@ -2,8 +2,8 @@ pipeline {
 
     agent {
         docker {
-            image 'ansible/ansible:default'
-            // image 'willhallonline/ansible'
+            // image 'ansible/ansible:default'
+            image 'willhallonline/ansible'
             // image 'gableroux/ansible'
             // args '-i --entrypoint='
             // use -v so that our ansible container will write to
