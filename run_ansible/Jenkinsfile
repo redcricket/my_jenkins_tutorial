@@ -18,12 +18,7 @@ pipeline {
                 script {
                     properties([
                         parameters([
-                            string( defaultValue: 'all', name: 'PATTERN', trim: true ),
-                            string( defaultValue: 'hosts', name: 'INVENTORY', trim: true ),
-                            string( defaultValue: '\'*\'', name: 'LIMIT', trim: true ),
-                            string( defaultValue: 'shell', name: 'MODULE', trim: true ),
-                            string( defaultValue: 'pwd' ,name: 'DASH_A', trim: true ),
-                            string( defaultValue: '--list-hosts', name: 'EXTRA_PARAMS', trim: true )
+                            string( name: 'CMD', trim: true ),
                         ])
                     ])
                 }
@@ -35,16 +30,7 @@ pipeline {
                     env.DEFAULT_LOCAL_TMP = env.WORKSPACE_TMP
                     env.HOME = env.WORKSPACE
 
-                    sh """
-                    env
-                    pwd
-                    ls -la
-                    id
-                    echo ${WORKSPACE_TMP}
-                    echo ${DEFAULT_LOCAL_TMP}
-                    # ansible
-                    ansible ${PATTERN} -i ${INVENTORY} -l "${LIMIT}" -m ${MODULE} -a ${DASH_A} ${EXTRA_PARAMS}
-                    """
+                    sh "${CMD}"
                 }
             }
         }

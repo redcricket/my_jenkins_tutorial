@@ -30,7 +30,7 @@ pipeline {
                     whole_file_data.split('\n').each { String line ->
                         if(line.startsWith('#')) {
                             println("Ignoreing comment:${line}")
-                        } else if (line.startsWith("ANSIBLE|"))  {
+                        } else if (line.startsWith("ansible "))  {
                             checkAnsibleAction(line)
                         } else if (line.startsWith("ANSIBLEPLAYBOOK|"))  {
                             checkAnsiblePlaybookAction(line)
@@ -58,7 +58,7 @@ pipeline {
                     whole_file_data.split('\n').each { String line ->
                         if(line.startsWith('#')) {
                             println("Ignoreing comment:${line}")
-                        } else if (line.startsWith("ANSIBLE|"))  {
+                        } else if (line.startsWith("ansible "))  {
                             runAnsibleAction(line)
                         } else if (line.startsWith("ANSIBLEPLAYBOOK|"))  {
                             runAnsiblePlaybookAction(line)
@@ -78,14 +78,10 @@ pipeline {
 
 def checkAnsibleAction(String line) {
     println("checkAnsibleAction called with  line = ${line}")
-    def (ACTION, PATTERN, INVENTORY, LIMIT, MODULE, DASH_A, EXTRA_PARAMS) = line.tokenize('|')
+    // def (ACTION, PATTERN, INVENTORY, LIMIT, MODULE, DASH_A, EXTRA_PARAMS) = line.tokenize('|')
+    // println("${ACTION}, ${PATTERN}, ${INVENTORY}, [${EXTRA_PARAMS}]")
     build job: 'run_ansible', propagate: true, wait: true, parameters: [
-        [$class: 'StringParameterValue', name: 'PATTERN', value: PATTERN],
-        [$class: 'StringParameterValue', name: 'INVENTORY', value: INVENTORY],
-        [$class: 'StringParameterValue', name: 'LIMIT', value: LIMIT],
-        [$class: 'StringParameterValue', name: 'MODULE', value: MODULE],
-        [$class: 'StringParameterValue', name: 'DASH_A', value: DASH_A],
-        [$class: 'StringParameterValue', name: 'EXTRA_PARAMS', value: EXTRA_PARAMS + ' --list-hosts']]
+        [$class: 'StringParameterValue', name: 'CMD', value: line + ' --list-hosts']]
 }
 
 def checkAnsiblePlaybookAction(String line) {
@@ -101,6 +97,7 @@ def checkAnsiblePlaybookAction(String line) {
 def runAnsibleAction(String line) {
     println("runAnsibleAction called with  line = ${line}")
     def (ACTION, PATTERN, INVENTORY, LIMIT, MODULE, DASH_A, EXTRA_PARAMS) = line.tokenize('|')
+    println("${ACTION}, ${PATTERN}, ${INVENTORY}, ${LIMIT}, ${MODULE}, [${DASH_A}], ${EXTRA_PARAMS}")
     build job: 'run_ansible', propagate: true, wait: true, parameters: [
         [$class: 'StringParameterValue', name: 'PATTERN', value: PATTERN],
         [$class: 'StringParameterValue', name: 'INVENTORY', value: INVENTORY],
