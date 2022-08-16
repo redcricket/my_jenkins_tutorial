@@ -30,7 +30,7 @@ pipeline {
                     env.DEFAULT_LOCAL_TMP = env.WORKSPACE_TMP
                     env.HOME = env.WORKSPACE
 
-                    sh "ansible ${CMD}"
+                    sh "${CMD}"
                 }
             }
         }
