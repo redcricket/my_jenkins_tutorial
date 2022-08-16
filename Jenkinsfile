@@ -84,9 +84,9 @@ def checkAnsibleAction(String line) {
     build job: 'run_ansible', propagate: true, wait: true, parameters: [
         [$class: 'StringParameterValue', name: 'PATTERN', value: PATTERN],
         [$class: 'StringParameterValue', name: 'INVENTORY', value: INVENTORY],
-        [$class: 'StringParameterValue', name: 'LIMIT', value: LIMIT],
-        [$class: 'StringParameterValue', name: 'MODULE', value: MODULE],
-        [$class: 'StringParameterValue', name: 'DASH_A', value: DASH_A],
+        // [$class: 'StringParameterValue', name: 'LIMIT', value: LIMIT],
+        // [$class: 'StringParameterValue', name: 'MODULE', value: MODULE],
+        // [$class: 'StringParameterValue', name: 'DASH_A', value: DASH_A],
         [$class: 'StringParameterValue', name: 'EXTRA_PARAMS', value: EXTRA_PARAMS + ' --list-hosts']]
 }
 
