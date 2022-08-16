@@ -37,9 +37,6 @@ pipeline {
 
                     sh """
                     env
-                    pwd
-                    ls -la
-                    id
                     echo ${WORKSPACE_TMP}
                     echo ${DEFAULT_LOCAL_TMP}
                     # ansible
