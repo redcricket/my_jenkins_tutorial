@@ -79,8 +79,7 @@ pipeline {
 def checkAnsibleAction(String line) {
     println("checkAnsibleAction called with  line = ${line}")
     // def (ACTION, PATTERN, INVENTORY, LIMIT, MODULE, DASH_A, EXTRA_PARAMS) = line.tokenize('|')
-    def (ACTION, PATTERN, INVENTORY, EXTRA_PARAMS) = line.tokenize('|')
-    println("${ACTION}, ${PATTERN}, ${INVENTORY}, [${EXTRA_PARAMS}]")
+    // println("${ACTION}, ${PATTERN}, ${INVENTORY}, [${EXTRA_PARAMS}]")
     build job: 'run_ansible', propagate: true, wait: true, parameters: [
         [$class: 'StringParameterValue', name: 'CMD', value: line + ' --list-hosts']]
 }
