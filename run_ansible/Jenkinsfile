@@ -30,14 +30,7 @@ pipeline {
                     env.DEFAULT_LOCAL_TMP = env.WORKSPACE_TMP
                     env.HOME = env.WORKSPACE
 
-                    sh """
-                    env
-                    echo ${WORKSPACE_TMP}
-                    echo ${DEFAULT_LOCAL_TMP}
-                    # ansible
-                    # ansible ${PATTERN} -i ${INVENTORY} -l "${LIMIT}" -m ${MODULE} -a ${DASH_A} ${EXTRA_PARAMS}
-                    ansible ${CMD}
-                    """
+                    sh "ansible ${CMD}"
                 }
             }
         }
