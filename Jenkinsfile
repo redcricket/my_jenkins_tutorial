@@ -30,7 +30,7 @@ pipeline {
                     whole_file_data.split('\n').each { String line ->
                         if(line.startsWith('#')) {
                             println("Ignoreing comment:${line}")
-                        } else if (line.startsWith("ANSIBLE|"))  {
+                        } else if (line.startsWith("ansible "))  {
                             checkAnsibleAction(line)
                         } else if (line.startsWith("ANSIBLEPLAYBOOK|"))  {
                             checkAnsiblePlaybookAction(line)
