@@ -24,7 +24,9 @@ pipeline {
                     println(wholeFileData)
                     mopData = new JsonSlurper().parseText(wholeFileData)
                     println(mopData)
-                    mop = mopData['mop']
+                    // String value1 = response.data.value1
+
+                    mop = mopData.mop
                     print(mop)
                     mopData = null
                 }
