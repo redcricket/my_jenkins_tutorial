@@ -6,7 +6,8 @@
         "name": "MMRS",
         "value": "centos*"
       },
-      "ansible": {
+      "command": "ansible",
+      "arguments": {
         "pattern": "all",
         "inventory": "hosts",
         "limit": "$MMRS",

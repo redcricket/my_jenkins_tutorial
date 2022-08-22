@@ -30,6 +30,8 @@ pipeline {
                     print(mop)
                     mop.each {
                         println("comment = [$it.comment]")
+                        println("command = [$it.command]")
+                        println("arguments = [$it.arguments]")
                     }
                     mopData = null
                     mop = null
