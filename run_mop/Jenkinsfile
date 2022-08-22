@@ -23,11 +23,11 @@ pipeline {
                     wholeFileData = readFile(file: MOP_FILE)
                     println(wholeFileData)
                     mopData = new JsonSlurper().parseText(wholeFileData)
-                    // println(mopData)
+                    println(mopData)
                 }
             }
         }
-        stage('Approve MOP Step-by-Step') { steps { script { input "Now what?" } } }
+        // stage('Approve MOP Step-by-Step') { steps { script { input "Now what?" } } }
     }
 }
 
