@@ -1,16 +1,17 @@
+import groovy.json.JsonSlurper
+
+def mopData
 def wholeFileData
-def ys = new YamlSlurper()
 
 pipeline {
     agent any
     stages {
         stage('Setup parameters') {
             steps {
-                // PATTERN|INVENTORY|LIMIT|MODULE|DASH_A|EXTRA_PARAMS
                 script {
                     properties([
                         parameters([
-                            string( defaultValue: 'the-mop.yaml', name: 'MOP_FILE', trim: true ),
+                            string( defaultValue: './mops/the-mop.json', name: 'MOP_FILE', trim: true ),
                         ])
                     ])
                 }
@@ -20,12 +21,13 @@ pipeline {
             steps {
                 script {
                     wholeFileData = readFile(file: MOP_FILE)
-                    mopData = ys.parseText(wholeFileData)
+                    println(wholeFileData)
+                    mopData = new JsonSlurper().parseText(wholeFileData)
                     println(mopData)
                 }
             }
         }
-        stage('Approve MOP Step-by-Step') { steps { script { input "Now what?" } } }
+        // stage('Approve MOP Step-by-Step') { steps { script { input "Now what?" } } }
     }
 }
 
