@@ -46,7 +46,7 @@ pipeline {
                     // wholeFileData = readFile(file: MOP_FILE)
                     // mopData = js.parseText(wholeFileData)
                     // println(mopData)
-                    println("Hello")
+                    println(slurped)
                 }
             }
         }
