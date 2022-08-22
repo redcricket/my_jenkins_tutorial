@@ -24,7 +24,7 @@ def json = '''{
     "slackChannel": "#dg-test-deployments"
   }
 }'''
-def slurped = new JsonSlurper().parseText(json)
+//def slurped = new JsonSlurper().parseText(json)
 pipeline {
     agent any
     stages {
@@ -42,6 +42,7 @@ pipeline {
         stage('Pre-Flight (automate MOP review') {
             steps {
                 script {
+                    def slurped = new JsonSlurper().parseText(json)
                     // wholeFileData = readFile(file: MOP_FILE)
                     // mopData = js.parseText(wholeFileData)
                     // println(mopData)
