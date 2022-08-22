@@ -2,16 +2,19 @@
   "mop": [
     {
       "comment": "Set env var MMRS",
-      "env_var": {
-        "name": "MMRS",
-        "value": "centos*"
-      },
-      "ansible": {
+      "env_var": [
+        { "name": "MMRS", "value": "centos*" },
+        { "name": "INV", "value": "hosts" }
+      ],
+      "command": "ansible",
+      "arguments": {
         "pattern": "all",
-        "inventory": "hosts",
+        "inventory": "$INV",
         "limit": "$MMRS",
         "module": "shell",
-        "args": "ls -l /etc | grep group"
+        "args": "ls -l /etc | grep group",
+        "extra_vars": "-e decomm=0",
+        "--list-hosts": ""
       }
     }
   ]
