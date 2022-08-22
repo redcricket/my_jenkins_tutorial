@@ -43,7 +43,7 @@ pipeline {
             steps {
                 script {
                     wholeFileData = readFile(file: MOP_FILE)
-                    println(wholeFileData)
+                    // println(wholeFileData)
                     mopData = new JsonSlurper().parseText(wholeFileData)
                     // println(mopData)
                 }
