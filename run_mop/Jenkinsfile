@@ -11,7 +11,7 @@ pipeline {
                 script {
                     properties([
                         parameters([
-                            string( defaultValue: 'the-mop.json', name: 'MOP_FILE', trim: true ),
+                            string( defaultValue: './mops/the-mop.json', name: 'MOP_FILE', trim: true ),
                         ])
                     ])
                 }
