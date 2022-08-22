@@ -30,6 +30,7 @@ pipeline {
                     print(mop)
                     mop.each {
                         println("comment = [$it.comment]")
+                        println("env_vars = [$it.env_var]")
                         println("command = [$it.command]")
                         println("arguments = [$it.arguments]")
                     }
