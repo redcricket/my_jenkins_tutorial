@@ -1,5 +1,5 @@
 import groovy.json.JsonSlurper
-
+// see https://stackoverflow.com/questions/37864542/jenkins-pipeline-notserializableexception-groovy-json-internal-lazymap
 def mopData
 def wholeFileData
 
@@ -24,6 +24,7 @@ pipeline {
                     println(wholeFileData)
                     mopData = new JsonSlurper().parseText(wholeFileData)
                     println(mopData)
+                    mopData = null
                 }
             }
         }
