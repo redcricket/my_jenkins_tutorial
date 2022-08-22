@@ -28,6 +28,9 @@ pipeline {
 
                     mop = mopData.mop
                     print(mop)
+                    mop.each {
+                        println("comment = [$it.comment]")
+                    }
                     mopData = null
                     mop = null
                 }
