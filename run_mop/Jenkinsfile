@@ -1,6 +1,6 @@
 import groovy.json.JsonSlurper
 
-// def wholeFileData
+def mopData
 def json = '''{
   "dev": {
     "hoster": "123",
@@ -42,11 +42,9 @@ pipeline {
         stage('Pre-Flight (automate MOP review') {
             steps {
                 script {
-                    def slurped = new JsonSlurper().parseText(json)
-                    // wholeFileData = readFile(file: MOP_FILE)
-                    // mopData = js.parseText(wholeFileData)
-                    // println(mopData)
-                    println(slurped)
+                    wholeFileData = readFile(file: MOP_FILE)
+                    def slurped = new JsonSlurper().parseText(wholeFileData)
+                    println(mopData)
                 }
             }
         }
