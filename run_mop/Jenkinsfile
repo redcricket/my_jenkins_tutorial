@@ -29,6 +29,7 @@ pipeline {
                     mop = mopData.mop
                     print(mop)
                     mopData = null
+                    mop = null
                 }
             }
         }
