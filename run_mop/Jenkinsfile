@@ -1,30 +1,8 @@
 import groovy.json.JsonSlurper
 
 def mopData
-def json = '''{
-  "dev": {
-    "hoster": "123",
-    "id": "123",
-  },
-  "stage": {
-    "hoster": "123",
-    "id": "123",
-    "merge": "dev",
-    "slackChannel": "#dg-test-deployments"
-  },
-  "master": {
-    "hoster": "123",
-    "id": "123",
-    "merge": "stage",
-  },
-  "updates": {
-    "hoster": "123",
-    "id": "123",
-    "merge": "master",
-    "slackChannel": "#dg-test-deployments"
-  }
-}'''
-//def slurped = new JsonSlurper().parseText(json)
+def wholeFileData
+
 pipeline {
     agent any
     stages {
@@ -43,8 +21,8 @@ pipeline {
             steps {
                 script {
                     wholeFileData = readFile(file: MOP_FILE)
-                    // println(wholeFileData)
-                    mopData = new JsonSlurper().parseText(wholeFileData)
+                    println(wholeFileData)
+                    // mopData = new JsonSlurper().parseText(wholeFileData)
                     // println(mopData)
                 }
             }
