@@ -22,7 +22,7 @@ pipeline {
                 script {
                     wholeFileData = readFile(file: MOP_FILE)
                     println(wholeFileData)
-                    // mopData = new JsonSlurper().parseText(wholeFileData)
+                    mopData = new JsonSlurper().parseText(wholeFileData)
                     // println(mopData)
                 }
             }
