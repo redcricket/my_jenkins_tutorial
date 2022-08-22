@@ -7,7 +7,6 @@ pipeline {
         stage('Setup parameters') {
             steps {
                 // PATTERN|INVENTORY|LIMIT|MODULE|DASH_A|EXTRA_PARAMS
-
                 script {
                     properties([
                         parameters([
@@ -22,35 +21,13 @@ pipeline {
                 script {
                     wholeFileData = readFile(file: MOP_FILE)
                     mopData = ys.parseText(wholeFileData)
-/********************
----
-mop:
-   - comment: "Set env var MMRS"
-     env_var:
-       name: "MMRS"
-       value: 'centos*'
-     ansible:
-       pattern: "all"
-       inventory: "hosts"
-       limit: "$MMRS"
-       module: "shell"
-       args: "ls -l /etc | grep group"
-**************************/
-                        println(mopData)
-                    }
+                    println(mopData)
                 }
             }
         }
-        stage('Approve MOP Step-by-Step') {
-            steps {
-                script {
-                    input "Now what?"
-                }
-            }
-        }
+        stage('Approve MOP Step-by-Step') { steps { script { input "Now what?" } } }
     }
 }
-
 
 def runAnsibleAction(String line) {
     println("runAnsibleAction called with  line = ${line}")
