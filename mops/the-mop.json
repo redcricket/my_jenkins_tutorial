@@ -12,7 +12,9 @@
         "inventory": "$INV",
         "limit": "$MMRS",
         "module": "shell",
-        "args": "ls -l /etc | grep group"
+        "args": "ls -l /etc | grep group",
+        "extra_vars": "-e decomm=0",
+        "--list-hosts": ""
       }
     }
   ]
