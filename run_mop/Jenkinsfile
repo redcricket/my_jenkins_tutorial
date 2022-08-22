@@ -1,7 +1,6 @@
 import groovy.json.JsonSlurper
 
 // def wholeFileData
-def js = new JsonSlurper()
 def json = '''{
   "dev": {
     "hoster": "123",
