@@ -2,7 +2,30 @@ import groovy.json.JsonSlurper
 
 // def wholeFileData
 def js = new JsonSlurper()
-
+def json = '''{
+  "dev": {
+    "hoster": "123",
+    "id": "123",
+  },
+  "stage": {
+    "hoster": "123",
+    "id": "123",
+    "merge": "dev",
+    "slackChannel": "#dg-test-deployments"
+  },
+  "master": {
+    "hoster": "123",
+    "id": "123",
+    "merge": "stage",
+  },
+  "updates": {
+    "hoster": "123",
+    "id": "123",
+    "merge": "master",
+    "slackChannel": "#dg-test-deployments"
+  }
+}'''
+def slurped = new JsonSlurper().parseText(json)
 pipeline {
     agent any
     stages {
