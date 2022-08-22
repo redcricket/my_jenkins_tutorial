@@ -1,0 +1,18 @@
+{
+  "mop": [
+    {
+      "comment": "Set env var MMRS",
+      "env_var": {
+        "name": "MMRS",
+        "value": "centos*"
+      },
+      "ansible": {
+        "pattern": "all",
+        "inventory": "hosts",
+        "limit": "$MMRS",
+        "module": "shell",
+        "args": "ls -l /etc | grep group"
+      }
+    }
+  ]
+}

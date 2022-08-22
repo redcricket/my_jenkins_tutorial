@@ -1,7 +1,7 @@
-import groovy.yaml.YamlSlurper
+import groovy.yaml.JsonSlurper
 
 def wholeFileData
-def ys = new YamlSlurper()
+def js = new JsonSlurper()
 
 pipeline {
     agent any
@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     wholeFileData = readFile(file: MOP_FILE)
-                    mopData = ys.parseText(wholeFileData)
+                    mopData = js.parseText(wholeFileData)
                     println(mopData)
                 }
             }
