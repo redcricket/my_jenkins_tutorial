@@ -1,5 +1,5 @@
 import groovy.json.JsonSlurper
-
+// see https://stackoverflow.com/questions/37864542/jenkins-pipeline-notserializableexception-groovy-json-internal-lazymap
 def mopData
 def wholeFileData
 
@@ -24,36 +24,14 @@ pipeline {
                     println(wholeFileData)
                     mopData = new JsonSlurper().parseText(wholeFileData)
                     println(mopData)
+                    // String value1 = response.data.value1
+
+                    mop = mopData.mop
+                    print(mop)
+                    mopData = null
+                    mop = null
                 }
             }
         }
-        // stage('Approve MOP Step-by-Step') { steps { script { input "Now what?" } } }
     }
-}
-
-def runAnsibleAction(String line) {
-    println("runAnsibleAction called with  line = ${line}")
-    def (ACTION, PATTERN, INVENTORY, LIMIT, MODULE, DASH_A, EXTRA_PARAMS) = line.tokenize('|')
-    println("${ACTION}, ${PATTERN}, ${INVENTORY}, ${LIMIT}, ${MODULE}, [${DASH_A}], ${EXTRA_PARAMS}")
-    build job: 'run_ansible', propagate: true, wait: true, parameters: [
-        [$class: 'StringParameterValue', name: 'PATTERN', value: PATTERN],
-        [$class: 'StringParameterValue', name: 'INVENTORY', value: INVENTORY],
-        [$class: 'StringParameterValue', name: 'LIMIT', value: LIMIT],
-        [$class: 'StringParameterValue', name: 'MODULE', value: MODULE],
-        [$class: 'StringParameterValue', name: 'DASH_A', value: DASH_A],
-        [$class: 'StringParameterValue', name: 'EXTRA_PARAMS', value: EXTRA_PARAMS]]
-}
-
-def checkLog() {
-
-    def logFile = input(
-        id: 'userInput', message: 'Enter log filename :?',
-        parameters: [
-            string(defaultValue: 'None',
-                description: 'Log file to check.',
-                name: 'logFile'), ]
-    )
-    println("Check log file ${logFile}")
-    build job: 'run_chklog', propagate: true, wait: true, parameters: [
-        [$class: 'StringParameterValue', name: 'LOGFILE', value: logFile]]
 }
